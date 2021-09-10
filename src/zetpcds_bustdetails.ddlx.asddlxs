@@ -1,0 +1,50 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: { typeName: 'Bus Details',
+                typeNamePlural: 'Bus Details',
+                title: { type: #STANDARD, label: 'Bus Details', value: 'BusNumber' } },
+  presentationVariant: [{ sortOrder: [{ by: 'BusNumber', direction:  #DESC }] }] }
+
+annotate view ZETPCDS_BUSDETAILS
+    with 
+{
+@UI.facet: [ { id:              'BusDetails',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'BusDetails',
+                 position:        10 },
+               { id:              'Booking',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Booking',
+                 position:        20,
+                 targetElement:   '_Booking'} ]  
+
+ @UI:{ identification: [{ position: 1, label: 'Bus UUID' }] }
+    BusUuid;
+
+    @UI: {  lineItem:       [ { position: 20 } ],
+          identification: [ { position: 20, label: 'Operating Company'} ],
+          selectionField: [ { position: 20 } ] } 
+    @Consumption.valueHelpDefinition: [{entity: { element: 'OperatorName', name: 'ZETCDS_BUSDETAILS' } }]
+    OperatorName;
+    @UI: {  lineItem:       [ { position: 30 } ],
+          identification: [ { position: 30, label: 'Source' } ],
+          selectionField: [ { position: 30 } ] } 
+    @Consumption.valueHelpDefinition: [{entity: { element: 'Source', name: 'ZETCDS_BUSDETAILS' } }]          
+    Source;
+    @UI: {  lineItem:       [ { position: 60 } ],
+          identification: [ { position: 60, label: 'Destination' } ],
+          selectionField: [ { position: 60 } ] } 
+    @Consumption.valueHelpDefinition: [{entity: { element: 'Destination', name: 'ZETCDS_BUSDETAILS' } }]          
+    Destination;
+    
+    @UI: {  lineItem:       [ { position: 90 } ],
+          identification: [ { position: 90, label: 'Bus Type' } ],
+          selectionField: [ { position: 90 } ] } 
+    @Consumption.valueHelpDefinition: [{entity: { element: 'BusType', name: 'ZETCDS_BUSDETAILS' } }]
+    BusType;
+    
+ 
+ }
