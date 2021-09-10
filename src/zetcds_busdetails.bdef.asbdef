@@ -1,0 +1,62 @@
+managed implementation in class zbp_etcds_busdetails unique;
+
+define behavior for ZETCDS_BUSDETAILS alias BusDetails
+persistent table ZET_BUS_DETAILS
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+
+  update;
+  create;
+  delete;
+
+  association _Booking { create; }
+  field (numbering : managed, readonly) BusUuid;
+
+  mapping for ZET_BUS_DETAILS
+  {
+    BusUuid = bus_uuid;
+    BusNumber = bus_number;
+    OperatorName = operator_name;
+    Capacity = capacity;
+    SeatPrice = seat_price;
+    Source = source;
+    Destination = destination;
+    DepartureTime = departure_time;
+    ArrivalTime = arrival_time;
+    Distance = distance;
+    BusType = bus_type;
+  }
+
+}
+
+define behavior for ZETCDS_BOOKINGDETAILS alias BookingDetails
+persistent table ZET_BOOKING
+lock dependent by _BusDetails
+//authorization dependent by _BusDetails
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  field ( readonly ) BusId;
+  association _BusDetails;
+  field (numbering : managed, readonly) BookingId;
+
+  mapping for ZET_BOOKING
+  {
+    BookingId = booking_id;
+    UserId = user_id;
+    UserName = user_name;
+    UserContactNo = user_contact_no;
+    UserEmailId = user_email_id;
+    AadharNo = aadhar_no;
+    UserAge = user_age;
+    UserGender = user_gender;
+    BusId = bus_id;
+    Pnr = pnr;
+    SeatWaitlistNumber = seat_waitlist_number;
+    BookingStatus = booking_status;
+   }
+}
