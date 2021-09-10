@@ -4,7 +4,7 @@ define behavior for ZETCDS_BUSDETAILS alias BusDetails
 persistent table ZET_BUS_DETAILS
 lock master
 //authorization master ( instance )
-//etag master <field_name>
+//etag master
 {
 
   update;
@@ -19,7 +19,6 @@ lock master
     BusUuid = bus_uuid;
     BusNumber = bus_number;
     OperatorName = operator_name;
-    Capacity = capacity;
     SeatPrice = seat_price;
     Source = source;
     Destination = destination;
@@ -60,3 +59,6 @@ lock dependent by _BusDetails
     BookingStatus = booking_status;
    }
 }
+
+
+	
