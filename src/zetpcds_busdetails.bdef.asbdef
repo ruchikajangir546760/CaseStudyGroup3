@@ -1,0 +1,19 @@
+projection;
+//strict; //Comment this line in to enable strict mode. The strict mode is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZETPCDS_BUSDETAILS alias BusDetails
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Booking { create; }
+}
+
+define behavior for ZETPCDS_BOOKINGDETAILS alias BookingDetails
+{
+  use update;
+  use delete;
+
+  use association _BusDetails;
+}

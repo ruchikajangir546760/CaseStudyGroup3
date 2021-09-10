@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definiton for bus app'
+define service ZETUI_BUS {
+  expose ZETPCDS_BUSDETAILS as BusDetails;
+  expose ZETPCDS_BOOKINGDETAILS as Booking;
+}
