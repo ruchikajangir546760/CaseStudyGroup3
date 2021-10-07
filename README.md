@@ -1,2 +1,3 @@
-# CaseStudyGroup3
-case study group 3
+# Bus Booking Application
+
+### Using Restfull ABAP Programing Model
